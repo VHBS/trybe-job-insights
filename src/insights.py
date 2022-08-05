@@ -53,23 +53,39 @@ def get_min_salary(path):
 
 
 def matches_salary_range(job, salary):
+    matches_salary_range_verify_keys_of_job(job)
+    matches_salary_range_verify_type_of_job_values(job)
+    matches_salary_range_verify_job_values(job)
+    matches_salary_range_verify_type_of_salary(salary)
+    return matches_salary_range_verify_salary_value(job, salary)
+
+
+def matches_salary_range_verify_keys_of_job(job):
     if job.get("min_salary") is None or job.get("max_salary") is None:
         raise ValueError("Salario minimo ou máximo não informado")
+    pass
 
-    elif type(job["min_salary"]) != int or type(job["max_salary"]) != int:
+
+def matches_salary_range_verify_type_of_job_values(job):
+    if type(job["min_salary"]) != int or type(job["max_salary"]) != int:
         raise ValueError("Salario minimo ou máximo não numerico")
+    pass
 
-    elif job["min_salary"] > job["max_salary"]:
+
+def matches_salary_range_verify_job_values(job):
+    if job["min_salary"] > job["max_salary"]:
         raise ValueError("Salario minimo maior que o salario máximo")
-
-    else:
-        return matches_salary_range_check_salary(job, salary)
+    pass
 
 
-def matches_salary_range_check_salary(job, salary):
+def matches_salary_range_verify_type_of_salary(salary):
     if type(salary) != int:
         raise ValueError("Salario não numerico")
-    elif job["min_salary"] <= salary <= job["max_salary"]:
+    pass
+
+
+def matches_salary_range_verify_salary_value(job, salary):
+    if job["min_salary"] <= salary <= job["max_salary"]:
         return True
     else:
         return False
